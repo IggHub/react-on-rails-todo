@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react';
+import {HelloWorldFooter} from './HelloWorldFooter';
+import Todo from './Todo';
 
 export default class HelloWorld extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired, // this is passed from the Rails view
+    age: PropTypes.number.isRequired
   };
 
   /**
@@ -11,14 +14,20 @@ export default class HelloWorld extends React.Component {
    */
   constructor(props, _railsContext) {
     super(props);
-
-    // How to set initial state in ES6 class syntax
-    // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-    this.state = { name: this.props.name };
+    this.state = {
+      name: this.props.name,
+      age: this.props.age
+    };
   }
 
   updateName = (name) => {
     this.setState({ name });
+  };
+
+  updateAge(e){
+    this.setState({
+      age: e.target.value
+    })
   };
 
   render() {
@@ -37,8 +46,17 @@ export default class HelloWorld extends React.Component {
             type="text"
             value={this.state.name}
             onChange={(e) => this.updateName(e.target.value)}
-          />
+          /> - age:
+        <input
+          id="age"
+          type="text"
+          value={this.state.age}
+          onChange={this.updateAge.bind(this)}
+        />
         </form>
+        <p>I see you are {this.state.age} years old!</p>
+        <HelloWorldFooter />
+        <Todo />
       </div>
     );
   }
