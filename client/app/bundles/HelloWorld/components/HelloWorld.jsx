@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import {HelloWorldFooter} from './HelloWorldFooter';
-import Todo from './Todo';
+import TodoContainer from '../containers/TodoContainer';
 
 export default class HelloWorld extends React.Component {
   static propTypes = {
@@ -55,8 +54,7 @@ export default class HelloWorld extends React.Component {
         />
         </form>
         <p>I see you are {this.state.age} years old!</p>
-        <HelloWorldFooter />
-        <Todo />
+        <TodoContainer />
       </div>
     );
   }

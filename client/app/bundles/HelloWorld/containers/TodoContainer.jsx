@@ -1,6 +1,7 @@
 import React from 'react';
+import {TodoList} from '../components/todo/TodoList';
 
-class Todo extends React.Component{
+class TodoContainer extends React.Component{
   constructor(){
     super();
     this.state={
@@ -21,13 +22,11 @@ class Todo extends React.Component{
       <div>
         <h2>Hello from todo!</h2>
         <input type="text" onChange={this.todoHandler.bind(this)}/>
-        Current todo:{this.state.currentTodo}
-        <ul>
-          {this.state.todos.map(todo => <li key={todo.id}>{todo.name}</li>)}
-        </ul>
+        Current todo: {this.state.currentTodo}
+        <TodoList todos={this.state.todos} />
       </div>
     )
   }
 }
 
-export default Todo;
+export default TodoContainer;
