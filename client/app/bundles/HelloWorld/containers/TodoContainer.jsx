@@ -1,5 +1,6 @@
 import React from 'react';
 import {TodoList} from '../components/todo/TodoList';
+import {addTodo, generateId, findById, toggleTodo, updateTodo} from '../lib/todoHelpers';
 
 class TodoContainer extends React.Component{
   constructor(){
@@ -11,6 +12,7 @@ class TodoContainer extends React.Component{
         {id: 3, name:'Ship it!', isComplete: false}
       ], currentTodo: 'current todo!'
     }
+    this.todoHandler = this.todoHandler.bind(this);
   }
   todoHandler(e){
     this.setState({
@@ -21,7 +23,7 @@ class TodoContainer extends React.Component{
     return (
       <div>
         <h2>Hello from todo!</h2>
-        <input type="text" onChange={this.todoHandler.bind(this)}/>
+        <input type="text" onChange={this.todoHandler}/>
         Current todo: {this.state.currentTodo}
         <TodoList todos={this.state.todos} />
       </div>
